@@ -9,6 +9,11 @@
     "prebuild": "rm -rf dist",
     "build": "tsc -p tsconfig.json"
   },
+  "keywords": [
+    "github-api",
+    "typescript",
+    "nodejs"
+  ],
   "author": "Peter Aleksander Bizjak, <peteralex.bizjak@gmail.com>",
   "license": "MIT",
   "dependencies": {
