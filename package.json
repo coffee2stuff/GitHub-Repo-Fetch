@@ -1,0 +1,21 @@
+{
+  "name": "github-repo-fetch",
+  "version": "1.0.0",
+  "description": "Fetch user's public repositories on GitHub",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.js",
+  "scripts": {
+    "test": "jest",
+    "prebuild": "rm -rf dist",
+    "build": "tsc -p tsconfig.json"
+  },
+  "author": "Peter Aleksander Bizjak, <peteralex.bizjak@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@octokit/rest": "^18.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.23",
+    "typescript": "^3.9.7"
+  }
+}
