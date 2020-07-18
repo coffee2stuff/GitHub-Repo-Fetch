@@ -1,7 +1,7 @@
 {
   "name": "github-repo-fetch",
   "version": "1.0.0",
-  "description": "Fetch user's public repositories on GitHub",
+  "description": "Fetch user's basic profile and repository info from GitHub",
   "main": "./dist/index.js",
   "types": "./dist/index.d.js",
   "scripts": {
