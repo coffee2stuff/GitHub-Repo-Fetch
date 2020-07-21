@@ -1,6 +1,6 @@
 {
   "name": "github-repo-fetch",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Fetch user's basic profile and repository info from GitHub",
   "repository": {
     "url": "https://github.com/coffee2stuff/GitHub-Repo-Fetch"

@@ -1,6 +1,7 @@
 # GitHub Repo Fetch
 
-Simple TypeScript-based library for fetching basic information related to GitHub user and their public repositories.
+Simple TypeScript-based library for fetching basic information related to GitHub user and their public repositories. The
+library uses `@oktokit/graphql`, a [GitHub GraphQL API](https://github.com/octokit/graphql.js/) client.
 
 ## Use
 
