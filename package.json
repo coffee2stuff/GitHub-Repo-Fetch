@@ -2,11 +2,14 @@
   "name": "github-repo-fetch",
   "version": "1.0.1",
   "description": "Fetch user's basic profile and repository info from GitHub",
+  "repository": {
+    "url": "https://github.com/coffee2stuff/GitHub-Repo-Fetch"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.js",
   "scripts": {
-    "test": "jest",
-    "prebuild": "rm -rf dist",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "prebuild": "rm -rf dist && npm run format",
     "build": "tsc -p tsconfig.json"
   },
   "keywords": [
@@ -14,13 +17,18 @@
     "typescript",
     "nodejs"
   ],
-  "author": "Peter Aleksander Bizjak, <peteralex.bizjak@gmail.com>",
+  "author": {
+    "name": "Peter Aleksander Bizjak",
+    "email": "peteralex.developer@gmail.com",
+    "url": "https://github.com/coffee2stuff"
+  },
   "license": "MIT",
   "dependencies": {
     "@octokit/graphql": "^4.5.2"
   },
   "devDependencies": {
     "@types/node": "^14.0.24",
+    "prettier": "^2.0.5",
     "typescript": "^3.9.7"
   }
 }

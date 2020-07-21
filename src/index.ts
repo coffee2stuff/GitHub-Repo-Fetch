@@ -1,28 +1,34 @@
-import * as octokit from '@octokit/rest';
-import { UserModel, RepoModel, GitHubReposeModel } from './models';
+import { graphql } from '@octokit/graphql';
+import { RepoModel, GitHubReposeModel } from './models';
 
-export async function fetchGitHubUserData(token: string): Promise<GitHubReposeModel> {
-    const okto = new octokit.Octokit({ auth: token });
-    const userResponse = await okto.request('/user');
-    const user: UserModel = {
-        username: userResponse.data['login'],
-        displayName: userResponse.data['name'],
-        bio: userResponse.data['bio'],
-        publicRepos: userResponse.data['public_repos']
-    };
-
-    const reposResponse = await okto.request(`/users/${user.username}/repos`);
-    const repos: Array<RepoModel> = reposResponse.data.map((data: any) => {
-        return {
-            name: data['name'],
-            description: data['description'],
-            url: data['html_url'],
-            isPrivate: data['private'],
-            language: data['language']
+export async function fetchGitHubUserData(
+    token: string
+): Promise<GitHubReposeModel> {
+    const query: any = await graphql(
+        '{ viewer { login name bio repositories(first:8) { totalCount nodes { name description url isPrivate primaryLanguage { name } } } } }',
+        {
+            headers: {
+                authorization: `token ${token}`
+            }
         }
-    });
+    );
     return {
-        user: user,
-        repos: repos
+        user: {
+            username: query['viewer']['login'],
+            displayName: query['viewer']['name'],
+            bio: query['viewer']['bio'],
+            publicRepos: query['viewer']['repositories']['totalCount']
+        },
+        repos: query['viewer']['repositories']['nodes']
+            .map((node: any) => {
+                return {
+                    name: node['name'],
+                    description: node['description'],
+                    url: node['url'],
+                    isPrivate: node['isPrivate'],
+                    language: node['primaryLanguage']['name']
+                };
+            })
+            .filter((repo: RepoModel) => !repo.isPrivate)
     };
 }
